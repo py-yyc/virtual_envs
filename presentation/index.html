@@ -316,6 +316,29 @@ rm ~/src/project/venv
     </section>
 
     <section>
+        <h2>Auto VENV</h2>
+        <p>add the following to .bashrc too</p>
+        <p>it might not work exactly as typed</p>
+
+        <pre class="fragment"><code data-trim class="bash">
+export PS1="[\u@\h \[\e[1;34m\]\w\[\e[0m\]]\n\\$ "
+export PROMPT_COMMAND=prompt_command_collection
+        </code></pre>
+
+        <pre class="fragment"><code data-trim class="bash">
+function prompt_command_collection() {
+    printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"
+
+    handle_virtualenv
+    export PS1="[\u@\h \[\e[1;34m\]\w\[\e[0m\]${venv_ps1}" "]\n\\\$ "
+}
+        </code></pre>
+
+    </section>
+
+
+
+    <section>
         <h2>ProTips &trade;</h2>
 
         <ul>
